@@ -1,0 +1,9 @@
+.pieContainer{
+    width: 200px;
+    height: 200px;
+    /* border: 2px solid yellow; */
+    display: flex;
+    align-items: flex-end;
+    justify-content:center;
+
+}

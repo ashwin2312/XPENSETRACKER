@@ -1,0 +1,18 @@
+.listContainer{
+    width: 750px;
+    height: 345.03px;    
+    gap: 0px;
+    border-radius: 15px;
+    opacity: 0px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.emptyListContainer{
+    /* border: 1px solid red; */
+    color: black;
+    padding-left: 2rem;
+    padding-top: 0.8rem;
+}
