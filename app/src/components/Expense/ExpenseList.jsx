@@ -47,10 +47,11 @@ export default function ExpenseList({
   );
 
   const handleDelete = (id) => {
-    // console.log("id::", id);
-    const item = expenseList.find((i) => i.id == id);
+    console.log("id::", id);
+    const item = expenseList.find((listItem) => listItem.id == id);
     const price = Number(item.price);
     setBalance((prev) => prev + price);
+    console.log("Balance from ExpenseList::", balance);
 
     setExpenseList((prev) => prev.filter((item) => item.id != id));
 
@@ -92,6 +93,8 @@ export default function ExpenseList({
             totalPages={totalPages}
             onPageChange={handlePageChange}
             currentListItems={currentListItems}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
           />
         )}
         {/* <Pagination expenseList={expenseList} /> */}

@@ -11,10 +11,12 @@ export default function Pagination({
   onPageChange,
   currentListItems,
   setExpenseList,
+  handleDelete,
+  handleEdit,
 }) {
-  const handleDelete = (id) => {
-    setExpenseList(currentListItems.filter((items) => items.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setExpenseList(currentListItems.filter((items) => items.id !== id));
+  // };
   return (
     <div>
       <div className={listStyles.listContainer}>
@@ -24,6 +26,7 @@ export default function Pagination({
               detail={itemDetails}
               key={itemDetails.id}
               handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           );
         })}

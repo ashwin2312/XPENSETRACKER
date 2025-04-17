@@ -51,7 +51,17 @@ export default function Home() {
   });
 
   useEffect(() => {
+    const localBalance = localStorage.getItem("balance");
+    if (localBalance) {
+      setBalance(Number(localBalance));
+    } else {
+      localStorage.setItem("balance", balance);
+    }
+  }, []);
+
+  useEffect(() => {
     if (expenseList.length > 0) {
+      
       setExpense(
         expenseList.reduce(
           (acc, currentValue) => acc + Number(currentValue.price),
