@@ -12,18 +12,6 @@ import ReactModal from "react-modal";
 import { customModalStyles } from "../customModalStyles";
 
 ReactModal.setAppElement("#root");
-// export const customModalStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     marginRight: "-50%",
-//     transform: "translate(-50%, -50%)",
-//   },
-// };
-
-// customModalStyles
 
 export default function Home() {
   const [balance, setBalance] = useState(0);
@@ -49,7 +37,7 @@ export default function Home() {
     entertainment: 0,
     travel: 0,
   });
-
+  // ------------------------ Localstorage check
   useEffect(() => {
     const localBalance = localStorage.getItem("balance");
     if (localBalance) {
@@ -57,11 +45,18 @@ export default function Home() {
     } else {
       localStorage.setItem("balance", balance);
     }
+
+    const lists = JSON.parse(localStorage.getItem("expenses"));
+    setExpenseList(lists || []);
+    setIsMounted(true);
   }, []);
 
+  // -------------------------  Saving expense list in localstorage
   useEffect(() => {
+    if (expenseList.length > 0 || isMounted) {
+      localStorage.setItem("expenses", JSON.stringify(expenseList));
+    }
     if (expenseList.length > 0) {
-      
       setExpense(
         expenseList.reduce(
           (acc, currentValue) => acc + Number(currentValue.price),
@@ -92,6 +87,13 @@ export default function Home() {
       travel: travelSpends,
     });
   }, [expenseList]);
+
+  // -----------------------------  Saving balance in localstorage
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("balance", balance);
+    }
+  }, [balance]);
 
   const data = [
     { name: "Food", value: categorySpends.food },
